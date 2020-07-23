@@ -1,16 +1,20 @@
 {
+  "name": "accordingly",
+  "author": "Julian Low",
+  "license": "MIT",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
     "test": "echo \"This template does not include a test runner by default.\" && exit 1",
     "format": "prettier --write \"src/**/*.js\"",
-    "lint": "prettier --check \"src/**/*.js\""
+    "lint": "prettier --check \"src/**/*.js\"",
+    "css": "sass src/index.sass public/index.css",
+    "css-watch": "yarn css --watch"
   },
-  "dependencies": {
-    "canvas-confetti": "^1.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "prettier": "^2.0.5",
+    "sass": "^1.26.10",
     "snowpack": "^2.6.4"
   }
 }

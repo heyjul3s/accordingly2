@@ -1,0 +1,19 @@
+.accordion-panel-content
+  display: block
+  position: absolute
+  top: 0
+  width: 100%
+  background-color: #38cc70
+  transition: padding 400ms ease-out, height 400ms ease-out, max-height 400ms ease-out, opacity 300ms ease-out, visibility 200ms ease-out
+  visibility: hidden
+  opacity: 0
+
+  // &.hide
+  //   opacity: 0
+  //   visibility: hidden
+
+  .content-container
+    background-color: #38cc70
+    padding: 10px 50px
+    transition: transform 300ms ease-out, opacity 300ms ease-out, visibility 200ms ease-out
+    transform: translateY(-25%)

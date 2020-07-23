@@ -1,27 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-snowpack-app" />
+    <meta
+      name="description"
+      content="Javascript accordion that opens one at a time"
+    />
+    <meta name="author" content="Julian Low" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Titillium+Web:300,400,700,900"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Snowpack App</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"
+    />
+    <title>Accordingly</title>
   </head>
   <body>
-    <img id="img" src="/logo.svg" />
-    <canvas id="canvas"></canvas>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container">
+      <div class="heading">
+        <div class="description">
+          <h1>Accordingly</h1>
+          <p>A Raw Javascript Accordion With Dynamic Height Transitions</p>
+        </div>
+
+        <div class="social-bar">
+          <a
+            href="https://github.com/heyjul3s/accordingly"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Sauce Code on Github</a
+          >
+          <a
+            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fheyjul.es%2Fdemo%2Faccordingly&text=Accordingly%20-%20A%20Raw%20Javascript%20Accordion%20With%20Dynamic%20Height%20Transitions"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Tweet This</a
+          >
+          <a
+            href="https://twitter.com/heyjul3s"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Follow @heyjul3s</a
+          >
+        </div>
+      </div>
+
+      <div class="accordion-container">
+        <div class="accordion">
+          <div class="accordion-header">
+            <a href="#" data-toggle-index="0"
+              ><span class="icon"></span>Panel 1</a
+            >
+          </div>
+          <div class="accordion-panel-content panel-1">
+            <div class="content-container">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                ut erat nibh.Etiam gravida malesuada lectus, eget egestas odio
+                finibus vitae. Duis iaculis justo tempor sem consectetur, quis
+                convallis mauris tincidunt. Praesent sed quam quam. Duis
+                malesuada vulputate congue. Pellentesque quis sem egestas,
+                mollis purus nec, hendrerit mauris. Phasellus malesuada
+                vestibulum urna ut condimentum. Morbi et diam nec elit vulputate
+                lobortis vel vel orci. Vestibulum in tellus nec mi pulvinar
+                porta vitae ut massa.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">
+            <a href="#" data-toggle-index="1"
+              ><span class="icon"></span>Panel 2</a
+            >
+          </div>
+          <div class="accordion-panel-content panel-2">
+            <div class="content-container">
+              <p>
+                Nullam eget pharetra metus. Maecenas at mauris interdum, iaculis
+                mi vitae, vestibulumarcu. Sed pellentesque lorem finibus blandit
+                tristique. Quisque eget commodo dolor. Donec eget elit
+                hendrerit, iaculis est facilisis, blandit turpis. Aliquam
+                egestas eu nisi vel consequat. Sed tempus, arcu vitae molestie
+                sodales, metus urna congue lectus, vel scelerisque dui sapien
+                nec velit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">
+            <a href="#" data-toggle-index="2"
+              ><span class="icon"></span>Panel 3</a
+            >
+          </div>
+          <div class="accordion-panel-content panel-3">
+            <div class="content-container">
+              <p>
+                Integer sit amet odio congue quam lacinia fermentum. Donec
+                interdum ornare semper.Cras venenatis sem vitae ipsum sagittis
+                mattis. Vestibulum maximus aliquam neque in cursus. Curabitur ut
+                leo id sapien auctor interdum. Duis vel commodo ante.
+                Suspendisse eu risus neque. Duis sit amet luctus enim, eget
+                maximus lectus.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">
+            <a href="#" data-toggle-index="3"
+              ><span class="icon"></span>Panel 4</a
+            >
+          </div>
+          <div class="accordion-panel-content panel-4">
+            <div class="content-container">
+              <p>
+                Donec gravida molestie libero. Mauris rhoncus elit vitae aliquam
+                congue. Morbi liberotellus, feugiat a ipsum vitae, ultricies
+                facilisis sapien. Cras sagittis ipsum dui, nec rhoncus nibh
+                lobortis a. Proin volutpat, nulla sed vulputate aliquam, sapien
+                ligula cursus tellus, vitae vehicula felis dolor et nisl.
+                Phasellus consectetur non tortor quis ultrices. Suspendisse
+                tellus sem, fringilla at sem quis, ultricies vulputate risus.
+                Etiam et malesuada urna, quis placerat est. Quisque sem turpis,
+                porttitor nec pharetra vitae, posuere eu elit. Pellentesque
+                placerat sagittis nulla non sodales. Sed facilisis rutrum
+                rhoncus. Phasellus ex ligula, ultrices quis facilisis ac,
+                suscipit eget leo.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">
+            <a href="#" data-toggle-index="4"
+              ><span class="icon"></span>Panel 5</a
+            >
+          </div>
+          <div class="accordion-panel-content panel-5">
+            <div class="content-container">
+              <p>
+                Aenean sodales, mi quis bibendum molestie, lorem enim volutpat
+                dui, ut imperdiet nisiante vitae erat. Suspendisse condimentum,
+                magna at faucibus luctus, ligula ante gravida libero, vitae
+                aliquet lacus urna et erat. Sed auctor iaculis risus. Fusce
+                pretium dolor sem, sed semper diam maximus quis. Aliquam augue
+                leo, facilisis non orci at, convallis congue leo. Phasellus
+                aliquet diam vitae dui cursus, eget bibendum orci tincidunt.
+                Maecenas non porttitor erat. Donec ultricies ex fermentum odio
+                pulvinar dapibus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/_dist_/index.js"></script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

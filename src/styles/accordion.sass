@@ -1,0 +1,44 @@
+.accordion
+  display: block
+  position: relative
+  transition: opacity 400ms ease-out, transform 400ms ease-out
+  opacity: 1
+  // transform: scale(1)
+
+  &.panel-is-open
+    opacity: 1
+    // transform: scale(1)
+    z-index: 3
+
+    .accordion-header
+      a
+        background-color: rgba(43, 166, 89, 1)
+        transform: scale(1.025)
+
+        // &::after
+        //   width: 100%
+        //   max-width: 100%
+
+        > .icon
+          background-color: #248a4b
+          box-shadow: 0 0 0 2px #248a4b
+
+          &::before
+            transform: rotate(180deg)
+            opacity: 1
+
+          &::after
+            transform: rotate(-180deg)
+            opacity: 1
+
+    .accordion-panel-content
+      position: relative
+      opacity: 1
+      visibility: visible
+
+      .content-container
+        transform: translateY(0)
+
+  &:hover
+    .accordion-header
+      box-shadow: 1px 2px 6px 0px rgba(0,0,0, 0.15)

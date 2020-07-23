@@ -1,0 +1,17 @@
+.accordion-container
+  display: block
+  margin: 0 auto
+  max-width: 800px
+  padding: 15% 20px
+
+  &.accordion-open
+    .accordion
+      opacity: 0.5
+
+      &:hover
+        opacity: 0.75
+        transform: scale(1.015)
+
+      &.panel-is-open
+        opacity: 1
+        transform: scale(1)

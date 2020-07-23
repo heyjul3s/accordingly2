@@ -1,14 +1,213 @@
-#img {
+.accordion {
   display: block;
-  margin: auto;
-  height: 128px;
-  width: 128px;
-  padding: 2rem;
+  position: relative;
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  opacity: 1;
+}
+.accordion.panel-is-open {
+  opacity: 1;
+  z-index: 3;
+}
+.accordion.panel-is-open .accordion-header a {
+  background-color: #2ba659;
+  transform: scale(1.025);
+}
+.accordion.panel-is-open .accordion-header a > .icon {
+  background-color: #248a4b;
+  box-shadow: 0 0 0 2px #248a4b;
+}
+.accordion.panel-is-open .accordion-header a > .icon::before {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.accordion.panel-is-open .accordion-header a > .icon::after {
+  transform: rotate(-180deg);
+  opacity: 1;
+}
+.accordion.panel-is-open .accordion-panel-content {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+}
+.accordion.panel-is-open .accordion-panel-content .content-container {
+  transform: translateY(0);
+}
+.accordion:hover .accordion-header {
+  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.15);
 }
 
-#canvas {
+.accordion-container {
   display: block;
-  margin: 2rem auto;
-  width: 540px;
-  height: 540px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 15% 20px;
 }
+.accordion-container.accordion-open .accordion {
+  opacity: 0.5;
+}
+.accordion-container.accordion-open .accordion:hover {
+  opacity: 0.75;
+  transform: scale(1.015);
+}
+.accordion-container.accordion-open .accordion.panel-is-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.accordion-header {
+  display: block;
+  position: relative;
+  padding: 0;
+  z-index: 3;
+}
+.accordion-header a {
+  display: block;
+  position: relative;
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: 900;
+  background-color: #38cc70;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: background 400ms ease-out;
+  box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 400ms ease-out, transform 400ms ease-out, background-color 400ms ease-out;
+  transform: scale(1);
+}
+.accordion-header a:hover {
+  background-color: #2ba659;
+}
+.accordion-header a:hover > .icon {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+.accordion-header a:hover > .icon::before {
+  opacity: 0.75;
+}
+.accordion-header a:hover > .icon::after {
+  opacity: 0.75;
+}
+.accordion-header .icon {
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 14px);
+  left: 20px;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  transition: box-shadow 400ms ease-out, background-color 400ms ease-out;
+}
+.accordion-header .icon::before, .accordion-header .icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 3px;
+  background-color: white;
+  opacity: 0.4;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+  border-radius: 6px;
+}
+.accordion-header .icon::before {
+  transform: rotate(0deg);
+}
+.accordion-header .icon::after {
+  transform: rotate(90deg);
+}
+
+.accordion-panel-content {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #38cc70;
+  transition: padding 400ms ease-out, height 400ms ease-out, max-height 400ms ease-out, opacity 300ms ease-out, visibility 200ms ease-out;
+  visibility: hidden;
+  opacity: 0;
+}
+.accordion-panel-content .content-container {
+  background-color: #38cc70;
+  padding: 10px 50px;
+  transition: transform 300ms ease-out, opacity 300ms ease-out, visibility 200ms ease-out;
+  transform: translateY(-25%);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background-color: #35b967;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+a:focus, a:active {
+  outline: none;
+  border: none;
+  appearance: none;
+  text-shadow: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+.description {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.25rem 1rem;
+  border-radius: 6px;
+}
+@media (min-width: 1200px) {
+  .description {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+  }
+}
+.description h1, .description p {
+  display: inline-block;
+}
+.description p {
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+}
+.description h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1rem;
+}
+
+.social-bar {
+  position: fixed;
+  bottom: 1.5rem;
+}
+@media (min-width: 1200px) {
+  .social-bar {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1rem;
+  }
+}
+.social-bar a {
+  color: white;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.7);
+  margin: 0.5rem 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+@media (min-width: 1200px) {
+  .social-bar a {
+    display: inline-block;
+    margin: auto 0.25rem;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

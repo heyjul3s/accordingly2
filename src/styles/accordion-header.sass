@@ -1,0 +1,66 @@
+@import 'mixins'
+
+.accordion-header
+  display: block
+  position: relative
+  padding: 0
+  z-index: 3
+
+  a
+    display: block
+    position: relative
+    color: white
+    padding: 20px
+    font-size: 14px
+    font-weight: 900
+    background-color: #38cc70
+    letter-spacing: 1px
+    text-align: center
+    transition: background 400ms ease-out
+    box-shadow: 1px 2px 6px 0px rgba(0,0,0, 0.15)
+    transition: box-shadow 400ms ease-out, transform 400ms ease-out, background-color 400ms ease-out
+    transform: scale(1)
+
+    &:hover
+      background-color: rgba(43, 166, 89, 1)
+
+      > .icon
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75)
+
+        &::before
+          opacity: 0.75
+
+        &::after
+          opacity: 0.75
+
+  .icon
+    +rounded()
+    display: inline-block
+    position: absolute
+    top: calc(50% - 14px)
+    left: 20px
+    vertical-align: middle
+    width: 32px
+    height: 32px
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4)
+    background-color: transparent
+    transition: box-shadow 400ms ease-out, background-color 400ms ease-out
+
+    &::before,
+    &::after
+      +pseudo()
+      position: absolute
+      top: 50%
+      left: calc(50% - 7px)
+      width: 14px
+      height: 3px
+      background-color: white
+      opacity: 0.4
+      transition: transform 400ms ease-out, opacity 400ms ease-out
+      border-radius: 6px
+
+    &::before
+      transform: rotate(0deg)
+
+    &::after
+      transform: rotate(90deg)
