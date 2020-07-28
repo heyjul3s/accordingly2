@@ -9,6 +9,7 @@
       content="Javascript accordion that opens one at a time"
     />
     <meta name="author" content="Julian Low" />
+    <title>Accordingly</title>
     <link
       href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700,900"
     />
@@ -19,8 +20,269 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Accordingly</title>
+    <style>
+      .accordion {
+        display: block;
+        position: relative;
+        transition: opacity 400ms ease-out, transform 400ms ease-out;
+        opacity: 1;
+      }
+      .accordion.panel-is-open {
+        opacity: 1;
+        z-index: 3;
+      }
+      .accordion.panel-is-open .accordion-header a {
+        background-color: #2ba659;
+        transform: scale(1.025);
+      }
+      .accordion.panel-is-open .accordion-header a > .icon {
+        background-color: #248a4b;
+        box-shadow: 0 0 0 2px #248a4b;
+      }
+      .accordion.panel-is-open .accordion-header a > .icon::before {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      .accordion.panel-is-open .accordion-header a > .icon::after {
+        transform: rotate(-180deg);
+        opacity: 1;
+      }
+      .accordion.panel-is-open .accordion-panel-content {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+      }
+      .accordion.panel-is-open .accordion-panel-content .content-container {
+        transform: translateY(0);
+      }
+      .accordion:hover .accordion-header {
+        box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.15);
+      }
+
+      .accordion-container {
+        display: block;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 15% 20px;
+      }
+      .accordion-container.accordion-open .accordion {
+        opacity: 0.5;
+      }
+      .accordion-container.accordion-open .accordion:hover {
+        opacity: 0.75;
+        transform: scale(1.015);
+      }
+      .accordion-container.accordion-open .accordion.panel-is-open {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .accordion-header {
+        display: block;
+        position: relative;
+        padding: 0;
+        z-index: 3;
+      }
+      .accordion-header a {
+        display: block;
+        position: relative;
+        color: white;
+        padding: 20px;
+        font-size: 14px;
+        font-weight: 900;
+        background-color: #38cc70;
+        letter-spacing: 1px;
+        text-align: center;
+        transition: background 400ms ease-out;
+        box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 400ms ease-out, transform 400ms ease-out,
+          background-color 400ms ease-out;
+        transform: scale(1);
+      }
+      .accordion-header a:hover {
+        background-color: #2ba659;
+      }
+      .accordion-header a:hover > .icon {
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+      }
+      .accordion-header a:hover > .icon::before {
+        opacity: 0.75;
+      }
+      .accordion-header a:hover > .icon::after {
+        opacity: 0.75;
+      }
+      .accordion-header .icon {
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: calc(50% - 14px);
+        left: 20px;
+        vertical-align: middle;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+        background-color: transparent;
+        transition: box-shadow 400ms ease-out, background-color 400ms ease-out;
+      }
+      .accordion-header .icon::before,
+      .accordion-header .icon::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: calc(50% - 7px);
+        width: 14px;
+        height: 3px;
+        background-color: white;
+        opacity: 0.4;
+        transition: transform 400ms ease-out, opacity 400ms ease-out;
+        border-radius: 6px;
+      }
+      .accordion-header .icon::before {
+        transform: rotate(0deg);
+      }
+      .accordion-header .icon::after {
+        transform: rotate(90deg);
+      }
+
+      .accordion-panel-content {
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: #38cc70;
+        transition: padding 400ms ease-out, height 400ms ease-out,
+          max-height 400ms ease-out, opacity 300ms ease-out,
+          visibility 200ms ease-out;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .accordion-panel-content .content-container {
+        background-color: #38cc70;
+        padding: 10px 50px;
+        transition: transform 300ms ease-out, opacity 300ms ease-out,
+          visibility 200ms ease-out;
+        transform: translateY(-25%);
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        background-color: #35b967;
+        color: white;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      a:focus,
+      a:active {
+        outline: none;
+        border: none;
+        appearance: none;
+        text-shadow: none;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 1320px;
+      }
+
+      .banner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 6px;
+      }
+      @media (min-width: 1200px) {
+        .banner {
+          flex-direction: row;
+          background: transparent;
+          border-radius: 6px;
+          align-items: center;
+        }
+      }
+
+      .description {
+        display: inline-block;
+        padding: 0.25rem 1rem;
+        border-radius: 6px;
+        position: relative;
+        width: 100%;
+        flex: 1;
+        text-align: center;
+      }
+      .description::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .description .content {
+        display: inline-block;
+        padding: 1rem;
+        background: transparent;
+        border-radius: 0;
+      }
+      @media (min-width: 1200px) {
+        .description {
+          flex: 1;
+          text-align: left;
+        }
+        .description::after {
+          display: none;
+        }
+        .description .content {
+          border-radius: 6px;
+          background: rgba(0, 0, 0, 0.7);
+        }
+      }
+      .description h1,
+      .description p {
+        display: inline-block;
+        font-size: 1rem;
+        margin-bottom: 0.05em;
+      }
+      @media (min-width: 1200px) {
+        .description h1,
+        .description p {
+          margin: 0;
+        }
+      }
+
+      .social-bar {
+        display: flex;
+        background: transparent;
+        border-radius: 6px;
+      }
+      .social-bar a {
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+      .social-bar a svg {
+        padding-right: 0.5rem;
+      }
+      @media (min-width: 1200px) {
+        .social-bar {
+          background: rgba(0, 0, 0, 0.7);
+        }
+        .social-bar a {
+          font-size: 1rem;
+          border-right: 1px solid rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      /*# sourceMappingURL=index.css.map */
+    </style>
   </head>
   <body>
     <div class="banner">
@@ -207,6 +469,223 @@
       </div>
     </div>
 
-    <script type="module" src="/index.js"></script>
+    <script>
+      (function (window, document) {
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+          let accordingly = Accordingly();
+          accordingly.init();
+        });
+
+        function Accordingly() {
+          const accordionContainer = document.querySelector(
+            '.accordion-container',
+          );
+          const accordions = [...document.querySelectorAll('.accordion')];
+          const panels = document.querySelectorAll('.accordion-panel-content');
+
+          let targetAccordion;
+          let targetAccordionContent;
+          let toggleIndex;
+          let lastAccordion;
+          let currentAccordion;
+          let lastAccordionIndex;
+          let lastAccordionPanelContent;
+          let currentAccordionIndex;
+          let currentAccordionPanelContent;
+
+          let panelHeights = getHeights();
+          let targetPanelHeight = 0;
+
+          function init() {
+            initialPanelHeightsReset();
+
+            accordionContainer.addEventListener('click', function (ev) {
+              ev.preventDefault();
+
+              let target = ev.target;
+
+              targetAccordion = target.parentNode.parentNode;
+              targetAccordionContent = targetAccordion.querySelector(
+                '.accordion-panel-content',
+              );
+              toggleIndex = target.dataset.toggleIndex;
+
+              lastAccordion = currentAccordion;
+              lastAccordionIndex = accordions.indexOf(lastAccordion);
+              lastAccordionPanelContent = !!accordions[lastAccordionIndex]
+                ? getTargetAccordionPanelContent(accordions[lastAccordionIndex])
+                : currentAccordionPanelContent;
+
+              currentAccordion = targetAccordion;
+              currentAccordionIndex = accordions.indexOf(currentAccordion);
+              currentAccordionPanelContent = getTargetAccordionPanelContent(
+                accordions[currentAccordionIndex],
+              );
+
+              if (target !== this && target.tagName === 'A') {
+                let initAccordingly = initPanels.bind(
+                  null,
+                  closeOpenedPanels(),
+                );
+                targetPanelHeight = panelHeights[toggleIndex];
+                initAccordingly();
+              }
+            });
+          }
+
+          function initPanels() {
+            toggleTargetPanel();
+          }
+
+          function toggleTargetPanel() {
+            !targetAccordion.classList.contains('panel-is-open')
+              ? openTargetPanel()
+              : closeTargetPanel();
+          }
+
+          function openTargetPanel() {
+            setHeight();
+            setTargetAccordionClass();
+            setContainerClass();
+          }
+
+          function closeTargetPanel() {
+            resetHeight(targetAccordionContent);
+            removeTargetAccordionClass();
+            removeContainerClass();
+          }
+
+          function closeOpenedPanels(classname = 'panel-is-open') {
+            if (accordions.indexOf(lastAccordion) !== -1) {
+              if (
+                currentAccordion !== lastAccordion &&
+                accordions[lastAccordionIndex].classList.contains(classname)
+              ) {
+                lastAccordion = accordions[lastAccordionIndex];
+                currentAccordion = accordions[currentAccordionIndex];
+
+                resetHeight(lastAccordionPanelContent);
+
+                lastAccordionPanelContent.addEventListener(
+                  'transitionend',
+                  function callback(ev) {
+                    if (ev.propertyName === 'height') {
+                      if (lastAccordion.classList.contains(classname)) {
+                        lastAccordion.classList.remove(classname);
+                      }
+
+                      lastAccordionPanelContent.removeEventListener(
+                        'transitionend',
+                        callback,
+                        false,
+                      );
+                    }
+                  },
+                );
+              }
+            }
+          }
+
+          function getTargetAccordionPanelContent(targetAccordion) {
+            return targetAccordion?.querySelector('.accordion-panel-content');
+          }
+
+          function setHeight() {
+            targetAccordionContent.style.cssText = `max-height: ${targetPanelHeight}px; height: ${targetPanelHeight}px`;
+          }
+
+          function setTargetAccordionClass(classname = 'panel-is-open') {
+            if (!targetAccordion.classList.contains(classname)) {
+              targetAccordion.classList.add(classname);
+            }
+          }
+
+          function resetHeight(el) {
+            el.style.cssText = 'max-height: 0; height: 0;';
+          }
+
+          function initialPanelHeightsReset() {
+            if (isPOJO(panelHeights) && Object.keys(panelHeights).length > 0) {
+              panels.forEach(function (panel) {
+                resetHeight(panel);
+              });
+            }
+          }
+
+          function removeTargetAccordionClass(classname = 'panel-is-open') {
+            targetAccordion.addEventListener('transitionend', function callback(
+              ev,
+            ) {
+              if (
+                ev.propertyName === 'height' &&
+                targetAccordion.classList.contains(classname)
+              ) {
+                targetAccordion.classList.remove(classname);
+                targetAccordion.removeEventListener(
+                  'transitionend',
+                  callback,
+                  false,
+                );
+              }
+            });
+          }
+
+          function setContainerClass(classname = 'accordion-open') {
+            if (!accordionContainer.classList.contains(classname)) {
+              accordionContainer.classList.add(classname);
+            }
+          }
+
+          function removeContainerClass(classname = 'accordion-open') {
+            if (accordionContainer.classList.contains(classname)) {
+              accordionContainer.classList.remove(classname);
+            }
+          }
+
+          function getHeights() {
+            let heights = {};
+
+            panels.forEach(function (panel, i) {
+              if (elemIsVisible(panel)) {
+                let panelBoundingRect = panel.getBoundingClientRect();
+                let value = panelBoundingRect.height;
+
+                heights[i] = value;
+              }
+            });
+
+            return heights;
+          }
+
+          function elemIsVisible(el) {
+            return !!(
+              el.offsetWidth ||
+              el.offsetHeight ||
+              el.getClientRects().length
+            );
+          }
+
+          function isPOJO(value) {
+            if (typeof value !== 'object' || value === null) {
+              return false;
+            }
+
+            let proto = value;
+
+            while (Object.getPrototypeOf(proto) !== null) {
+              proto = Object.getPrototypeOf(proto);
+            }
+
+            return Object.getPrototypeOf(value) === proto;
+          }
+
+          return Object.freeze({
+            init: init,
+          });
+        }
+      })(window, document);
+    </script>
   </body>
 </html>
